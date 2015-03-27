@@ -22,7 +22,8 @@ public class ventana extends javax.swing.JFrame {
 
         @Override
         public void serialEvent(SerialPortEvent spe) {
-            
+            if(Arduino.MessageAvailable()==true)
+                System.out.println(Arduino.printMessage());
         }
     };
     public ventana() {
@@ -45,7 +46,7 @@ public class ventana extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        pantalla = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,9 +60,9 @@ public class ventana extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("DATOS DEL ARDUINO");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        pantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                pantallaActionPerformed(evt);
             }
         });
 
@@ -78,7 +79,7 @@ public class ventana extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,7 +87,7 @@ public class ventana extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
@@ -98,10 +99,14 @@ public class ventana extends javax.swing.JFrame {
     System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-     if(Arduino.MessageAvailable()==true)
-                System.out.println(Arduino.printMessage());   // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void pantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantallaActionPerformed
+        // TODO add your handling code here:
+        pantalla.setVisible(true);
+        if(Arduino.MessageAvailable())
+            pantalla.setText(Arduino.printMessage());
+            
+       
+    }//GEN-LAST:event_pantallaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,6 +146,6 @@ public class ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField pantalla;
     // End of variables declaration//GEN-END:variables
 }

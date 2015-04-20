@@ -15,25 +15,38 @@ import panamahitek.Arduino.PanamaHitek_Arduino;
  *
  * @author adriano.pinargote
  */
-public class ventana extends javax.swing.JFrame {
+public class ventana extends javax.swing.JFrame implements SerialPortEventListener {
 
-    PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
-    SerialPortEventListener evento = new SerialPortEventListener() {
-
-        @Override
-        public void serialEvent(SerialPortEvent spe) {
-            if(Arduino.MessageAvailable()==true)
-                System.out.println(Arduino.printMessage());
-        }
-    };
-    public ventana() {
+   
+        PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+        SerialPortEventListener ventana = new SerialPortEventListener() {
+            
+            @Override
+            public void serialEvent(SerialPortEvent spe) {
+             if(Arduino.MessageAvailable()==true){
+                 if(on.isSelected())
+                    pantalla.setText(Arduino.printMessage());
+                 else 
+                    pantalla.setText(null);
+               //System.out.println(Arduino.printMessage());
+             }
+         }
+     };
+    
+         public ventana() {
         initComponents();
+        
         try {
-            Arduino.ArduinoRXTX("COM5",2000, 9600, evento);
+            Arduino.ArduinoRXTX("COM7",2000, 9600, ventana);
         } catch (Exception ex) {
             Logger.getLogger(ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+           
+       
+        
+        
+        
+ }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +60,7 @@ public class ventana extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pantalla = new javax.swing.JTextField();
+        on = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +80,8 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
+        on.setText("ON");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,20 +90,27 @@ public class ventana extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(on)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(on)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
@@ -101,14 +124,12 @@ public class ventana extends javax.swing.JFrame {
 
     private void pantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantallaActionPerformed
         // TODO add your handling code here:
-        pantalla.setVisible(true);
-        if(Arduino.MessageAvailable())
-            pantalla.setText(Arduino.printMessage());
-            
+        String c= null;
+        this.pantalla.setText(c);
        
     }//GEN-LAST:event_pantallaActionPerformed
 
-    /**
+    /** 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -146,6 +167,12 @@ public class ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JToggleButton on;
     private javax.swing.JTextField pantalla;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void serialEvent(SerialPortEvent spe) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

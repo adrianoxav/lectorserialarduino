@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This is the Packet Collector, here we have the functions and reading methods.
+ * This class allows us to know the type of package received in the serial port.
  */
 package data;
 
@@ -23,30 +22,29 @@ import com.rapplogic.xbee.util.ByteUtils;
  * @author adriano.pinargote
  */
 public class PacketCollector implements PacketListener{
-
+    //We set the GUI.
     private Ventana frame; 
+    
     public void setGUI(Ventana frame){
         this.frame= frame;
-        
-    
     }
     
-    @Override
+    @Override   //this override allows us to receive any package meanwhile the port is still open.
     public void processResponse(XBeeResponse xbr) {
         
-        int info[]=xbr.getProcessedPacketBytes();
-        //ventana.getData(info);
         String tipo = ApiDecide(xbr);
         ZNetRxResponse net = (ZNetRxResponse) xbr;
-        
+        // the frame shows the package when the button ON is Selected.
         if(frame.on.isSelected())
-        {   
-            //frame.pantalla.append("DATA :" + ByteUtils.toBase10(net.getData())+"\n" );
-            frame.pantalla.append("Tipo de Paquete: " + tipo + "    Adrress: " + (net.getRemoteAddress64().getAddress()) + "    Data: " + ByteUtils.toBase10(net.getData())+"\n");
-        }
+            frame.pantalla.append("Tipo de Paquete: " + tipo + "    Adrress64: " + (net.getRemoteAddress64().getAddress()) + "    Adrress16: " + ByteUtils.toBase16(net.getRemoteAddress16().getAddress()) + "    Data: " + ByteUtils.toBase10(net.getData())+"\n");
+        
     }
     
-    
+  /**
+     * Parses the x,y,z axis values using the separator value to split them.
+     * @param x XBeeResponse has the packet in this object.
+     * @return String with the name of the type of the packet received.
+     */  
 public String ApiDecide(XBeeResponse x){
     String g = new String(" ");
     if(x.getApiId()==ApiId.AT_COMMAND)

@@ -1,6 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * This program is a free contribution for the research of the IoT, Internet of the Things
+ * these files contains an application of the XBee with Java.
  * and open the template in the editor.
  */
 package control;
@@ -13,11 +13,10 @@ import java.util.logging.Logger;
 import org.apache.log4j.BasicConfigurator;
 
 /**
- *
+ * Main Class
  * @author adriano.pinargote
  */
 public class Main {
-    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -42,8 +41,10 @@ public class Main {
             java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
         
+        /*
+        *The main contains the logger and the basic configurations
+        */
         BasicConfigurator.configure();
         Logger log = Logger.getLogger("Logger de Ejemplo");
         /* Create and display the form */
@@ -56,10 +57,7 @@ public class Main {
                 }
             }
         });
-        
-        
-        
-    }//recoleccion de datos
-    //
+    }
+    
 }
 

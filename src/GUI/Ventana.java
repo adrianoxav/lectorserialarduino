@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This is the GUI of the file, named Ventana
+ * We initialize here the Graphic Structure of the Program.
  */
 package GUI;
 
@@ -43,34 +42,19 @@ import com.rapplogic.xbee.api.PacketListener;
 public class Ventana extends javax.swing.JFrame {
   
     
-    public int[] getData(int[] info){
-        return info;
 
-        }
-    
-    
-    
+   /**
+     * Initializes the GUI
+     */
     public Ventana() throws XBeeException{
         XBee xbee=new XBee();
         
-    //xbee.close();
-        
-    
-    
-    
-
-            
     initComponents();
     
          xbee.open("COM4", 9600);
          PacketCollector pc=new PacketCollector();
-          pc.setGUI(this);
-           xbee.addPacketListener(pc);
-           
-          
-   
-   
-    
+         pc.setGUI(this);
+         xbee.addPacketListener(pc);
     }
 
     

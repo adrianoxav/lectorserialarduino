@@ -44,69 +44,71 @@ public class PacketCollector implements PacketListener{
             if(tipo=="ZNET_RX_RESPONSE"){
                 ZNetRxResponse net = (ZNetRxResponse) xbr;
                 frame.pantalla.append("Tipo de Paquete: " + tipo + "    Adrress64: " + (net.getRemoteAddress64().getAddress()) + "    Adrress16: " + ByteUtils.toBase16(net.getRemoteAddress16().getAddress()) + "    Data: " + ByteUtils.toBase10(net.getData())+"\n");
-            }else
-        
-            if(tipo=="AT_COMMAND"){}else    
+            
+            }else if(tipo=="AT_COMMAND"){
             
             
-            if(tipo=="AT_COMMAND_QUEUE"){}else
-        
-        
-            if(tipo=="AT_RESPONSE"){}else
-        
-        
-            if(tipo=="ERROR_RESPONSE"){}else
-        
-        
-            if(tipo=="MODEM_STATUS_RESPONSE"){}else
-        
-        
-            if(tipo=="REMOTE_AT_REQUEST"){}else
-        
-        
-            if(tipo=="REMOTE_AT_RESPONSE"){}else
-        
-        
-            if(tipo=="RX_16_IO_RESPONSE"){}else
-        
-        
-            if(tipo=="RX_16_RESPONSE"){}else
-        
-        
-            if(tipo=="RX_64_IO_RESPONSE"){}else
-        
-        
-            if(tipo=="RX_64_RESPONSE"){}else
-        
-        
-            if(tipo=="TX_REQUEST_16"){}else
-        
-        
-            if(tipo=="TX_REQUEST_64"){}else
-        
-        
-            if(tipo=="TX_STATUS_RESPONSE"){}else
-        
-        
-            if(tipo=="UNKNOWN"){}else
-        
-        
-            if(tipo=="ZNET_EXPLICIT_RX_RESPONSE"){}else
-        
-        
-            if(tipo=="ZNET_EXPLICIT_TX_REQUEST"){}else
-        
-        
-            if(tipo=="ZNET_IO_NODE_IDENTIFIER_RESPONSE"){}else
-        
-        
-            if(tipo=="ZNET_IO_SAMPLE_RESPONSE"){}else
-        
-        
-            if(tipo=="ZNET_TX_REQUEST"){}else
-        
-        
-            if(tipo=="ZNET_TX_STATUS_RESPONSE"){}
+            }else if(tipo=="AT_COMMAND_QUEUE"){
+            
+           
+            }else if(tipo=="AT_RESPONSE"){
+       
+                
+            }else if(tipo=="ERROR_RESPONSE"){
+            
+                
+            }else if(tipo=="MODEM_STATUS_RESPONSE"){
+          
+                
+            }else if(tipo=="REMOTE_AT_REQUEST"){
+           
+                
+            }else if(tipo=="REMOTE_AT_RESPONSE"){
+            
+          
+            }else if(tipo=="RX_16_IO_RESPONSE"){
+            
+         
+            }else if(tipo=="RX_16_RESPONSE"){
+          
+                
+            }else if(tipo=="RX_64_IO_RESPONSE"){
+          
+                
+            }else if(tipo=="RX_64_RESPONSE"){
+          
+                
+            }else if(tipo=="TX_REQUEST_16"){
+          
+                
+            }else if(tipo=="TX_REQUEST_64"){
+           
+                
+            }else if(tipo=="TX_STATUS_RESPONSE"){
+          
+                
+            }else if(tipo=="UNKNOWN"){
+          
+                
+            }else if(tipo=="ZNET_EXPLICIT_RX_RESPONSE"){
+            
+         
+            }else if(tipo=="ZNET_EXPLICIT_TX_REQUEST"){
+            
+          
+            }else if(tipo=="ZNET_IO_NODE_IDENTIFIER_RESPONSE"){
+          
+                
+            }else if(tipo=="ZNET_IO_SAMPLE_RESPONSE"){
+            
+         
+            }else if(tipo=="ZNET_TX_REQUEST"){
+          
+                
+            }else if(tipo=="ZNET_TX_STATUS_RESPONSE"){
+          
+                
+            }
         
      
         }

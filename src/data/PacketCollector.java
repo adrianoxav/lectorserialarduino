@@ -33,7 +33,7 @@ public class PacketCollector implements PacketListener{
     public void processResponse(XBeeResponse xbr) {
         
         String tipo = ApiDecide(xbr);
-        ZNetRxResponse net = (ZNetRxResponse) xbr;
+        
         
         
          // the frame shows the package when the button ON is Selected.    
@@ -41,68 +41,69 @@ public class PacketCollector implements PacketListener{
 
         //HERE WE HAVE THE DIFFERENT KIND OF PACKAGES
         
-            if(tipo=="ZNET_RX_RESPONSE")
+            if(tipo=="ZNET_RX_RESPONSE"){
+                ZNetRxResponse net = (ZNetRxResponse) xbr;
                 frame.pantalla.append("Tipo de Paquete: " + tipo + "    Adrress64: " + (net.getRemoteAddress64().getAddress()) + "    Adrress16: " + ByteUtils.toBase16(net.getRemoteAddress16().getAddress()) + "    Data: " + ByteUtils.toBase10(net.getData())+"\n");
+            }else
+        
+            if(tipo=="AT_COMMAND"){}else    
             
-        
-            if(tipo=="AT_COMMAND"){}    
             
-            
-            if(tipo=="AT_COMMAND_QUEUE"){}
+            if(tipo=="AT_COMMAND_QUEUE"){}else
         
         
-            if(tipo=="AT_RESPONSE"){}
+            if(tipo=="AT_RESPONSE"){}else
         
         
-            if(tipo=="ERROR_RESPONSE"){}
+            if(tipo=="ERROR_RESPONSE"){}else
         
         
-            if(tipo=="MODEM_STATUS_RESPONSE"){}
+            if(tipo=="MODEM_STATUS_RESPONSE"){}else
         
         
-            if(tipo=="REMOTE_AT_REQUEST"){}
+            if(tipo=="REMOTE_AT_REQUEST"){}else
         
         
-            if(tipo=="REMOTE_AT_RESPONSE"){}
+            if(tipo=="REMOTE_AT_RESPONSE"){}else
         
         
-            if(tipo=="RX_16_IO_RESPONSE"){}
+            if(tipo=="RX_16_IO_RESPONSE"){}else
         
         
-            if(tipo=="RX_16_RESPONSE"){}
+            if(tipo=="RX_16_RESPONSE"){}else
         
         
-            if(tipo=="RX_64_IO_RESPONSE"){}
+            if(tipo=="RX_64_IO_RESPONSE"){}else
         
         
-            if(tipo=="RX_64_RESPONSE"){}
+            if(tipo=="RX_64_RESPONSE"){}else
         
         
-            if(tipo=="TX_REQUEST_16"){}
+            if(tipo=="TX_REQUEST_16"){}else
         
         
-            if(tipo=="TX_REQUEST_64"){}
+            if(tipo=="TX_REQUEST_64"){}else
         
         
-            if(tipo=="TX_STATUS_RESPONSE"){}
+            if(tipo=="TX_STATUS_RESPONSE"){}else
         
         
-            if(tipo=="UNKNOWN"){}
+            if(tipo=="UNKNOWN"){}else
         
         
-            if(tipo=="ZNET_EXPLICIT_RX_RESPONSE"){}
+            if(tipo=="ZNET_EXPLICIT_RX_RESPONSE"){}else
         
         
-            if(tipo=="ZNET_EXPLICIT_TX_REQUEST"){}
+            if(tipo=="ZNET_EXPLICIT_TX_REQUEST"){}else
         
         
-            if(tipo=="ZNET_IO_NODE_IDENTIFIER_RESPONSE"){}
+            if(tipo=="ZNET_IO_NODE_IDENTIFIER_RESPONSE"){}else
         
         
-            if(tipo=="ZNET_IO_SAMPLE_RESPONSE"){}
+            if(tipo=="ZNET_IO_SAMPLE_RESPONSE"){}else
         
         
-            if(tipo=="ZNET_TX_REQUEST"){}
+            if(tipo=="ZNET_TX_REQUEST"){}else
         
         
             if(tipo=="ZNET_TX_STATUS_RESPONSE"){}
